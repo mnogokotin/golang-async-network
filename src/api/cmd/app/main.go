@@ -1,7 +1,7 @@
 package main
 
-import "github.com/mnogokotin/golang-async-network/internal/app"
+import "github.com/mnogokotin/golang-async-network/internal/app1"
 
 func main() {
-	app.Run()
+	app1.Run()
 }
