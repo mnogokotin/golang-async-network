@@ -9,8 +9,6 @@ import (
 )
 
 func Run() {
-	defer async.Timer("app 2 main")()
-
 	fetcher1 := make(chan interface{})
 	fetcher2 := make(chan interface{})
 
