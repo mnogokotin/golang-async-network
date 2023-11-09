@@ -12,12 +12,12 @@ func Timer(name string) func() {
 	}
 }
 
-func Send(channel chan string, data string, delay time.Duration) {
+func Send(channel chan interface{}, data string, delay time.Duration) {
 	time.Sleep(delay)
 	channel <- data
 }
 
-func Receive(channel <-chan string) {
+func Receive(channel <-chan interface{}) {
 	for data := range channel {
 		fmt.Printf("<- %s\n", data)
 	}

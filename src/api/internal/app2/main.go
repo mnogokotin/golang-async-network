@@ -11,8 +11,8 @@ import (
 func Run() {
 	defer async.Timer("app 2 main")()
 
-	fetcher1 := make(chan string)
-	fetcher2 := make(chan string)
+	fetcher1 := make(chan interface{})
+	fetcher2 := make(chan interface{})
 
 	ctx, cancelCtx := context.WithTimeout(context.Background(), 1000*time.Millisecond)
 	defer cancelCtx()
@@ -25,8 +25,8 @@ func Run() {
 	time.Sleep(2 * time.Second)
 }
 
-func fanIn(ctx context.Context, fetchers ...<-chan string) <-chan string {
-	combinedFetcher := make(chan string)
+func fanIn(ctx context.Context, fetchers ...<-chan interface{}) <-chan interface{} {
+	combinedFetcher := make(chan interface{})
 
 	var wg sync.WaitGroup
 	wg.Add(len(fetchers))
@@ -37,8 +37,8 @@ func fanIn(ctx context.Context, fetchers ...<-chan string) <-chan string {
 			defer wg.Done()
 			for {
 				select {
-				case res := <-f:
-					combinedFetcher <- res
+				case output := <-f:
+					combinedFetcher <- output
 				case <-ctx.Done():
 					fmt.Println("fanIn routine done")
 					return
