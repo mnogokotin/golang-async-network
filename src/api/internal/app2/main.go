@@ -3,7 +3,7 @@ package app2
 import (
 	"context"
 	"fmt"
-	"github.com/mnogokotin/golang-async-network/pkg/utils/async"
+	"github.com/mnogokotin/golang-packages/utils/async"
 	"sync"
 	"time"
 )

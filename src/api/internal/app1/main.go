@@ -2,7 +2,7 @@ package app1
 
 import (
 	"fmt"
-	"github.com/mnogokotin/golang-async-network/pkg/utils/async"
+	"github.com/mnogokotin/golang-packages/utils/async"
 	"net/http"
 )
 
